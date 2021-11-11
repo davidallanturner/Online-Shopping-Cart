@@ -42,7 +42,6 @@ function showCart(l) {
   // TODO: Add the TR to the TBODY and each of the TD's to the TR
   }
 
-
 }
 
 function removeItemFromCart(event) {

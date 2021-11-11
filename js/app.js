@@ -7,14 +7,13 @@ const Cart = function(items) {
 };
 
 Cart.prototype.addItem = function(product, quantity) {
-  // TODO: Fill in this instance method to create a new CartItem and add it to this.items
   let newCartItem = new CartItem(product, quantity);
   this.items.push(newCartItem);
   console.log(product, quantity);
 };
 
 Cart.prototype.saveToLocalStorage = function() {
-  let stringifiedProducts = JSON.stringify(items);
+  let stringifiedProducts = JSON.stringify(this.items);
   localStorage.setItem('item', stringifiedProducts);
 };
 

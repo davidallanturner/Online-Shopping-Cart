@@ -37,8 +37,6 @@ function showCart() {
   // TODO: Create a TD for the delete link, quantity,  and the item
   let del = document.createElement('td')
   // TODO: Add the TR to the TBODY and each of the TD's to the TR
-
-
 }
 
 function removeItemFromCart(event) {

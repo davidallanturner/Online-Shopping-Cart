@@ -4,11 +4,12 @@
 // Create an event listener so that when the delete link is clicked, the removeItemFromCart method is invoked.
 const table = document.getElementById('cart');
 table.addEventListener('click', removeItemFromCart);
-let cart;
+
 
 function loadCart() {
-  const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-  cart = new Cart(cartItems);
+  const cartItems = JSON.parse(localStorage.getItem('item')) || [];
+  let cart = new Cart(cartItems);
+  // console.log(cart);
   return cart;
 }
 
@@ -19,24 +20,61 @@ function renderCart() {
   showCart(l);
 }
 
-// TODO: Remove all of the rows (tr) in the cart table (tbody)
+// DONE: Remove all of the rows (tr) in the cart table (tbody)
 function clearCart() {
-  const table = document.getElementById('cart');
-  table.parentElement.removeChild(table);
+  const tbody = document.querySelector('#cart > tbody:nth-child(2)');
+  
+
+
+  const tfoot = document.querySelector('#cart > tfoot:nth-child(3)');
+
+  tfoot.parentElement.removeChild(tfoot);
+  tbody.parentElement.removeChild(tbody);
 }
 
-// TODO: Fill in the <tr>'s under the <tbody> for each item in the cart
+// DONE: Fill in the <tr>'s under the <tbody> for each item in the cart
 function showCart(l) {
 
-  // TODO: Find the table body
-  const table = document.getElementById('cart');
-  // TODO: Iterate over the items in the cart
-  for(let i=0; i<l.length; i++){
+  // DONE: Find the table body
+  const cartContain = document.getElementById('cart-container');
+  // const table = document.getElementById('cart');
+  let table = document.getElementById('cart');  
+  let tfoot = document.createElement('tfoot');
+  let tbody = document.createElement('tbody');
+  table.appendChild(tbody);
+  table.appendChild(tfoot);
+  // DONE: Iterate over the items in the cart
+  // console.log(l);
+  for(let i=0; i<l.items.length; i++){
+    // console.log(l.items);
   // console.log(cartItems);
-  // TODO: Create a TR
-  console.log(l[i]);
+  // DONE: Create a TR
+    let tbody = document.querySelector('#cart > tbody:nth-child(2)');
   let tr = document.createElement('tr');
-  tr.updateText = l[i];
+  tr.id = 'a'+ i;
+  tbody.appendChild(tr);
+  
+  let trx = document.getElementById('a'+ i);
+  console.log(trx);
+
+//td for items
+let td1 = document.createElement('td');
+let td2 = document.createElement('td');
+let td3 = document.createElement('td');
+
+// console.log(l.items[i].product);
+
+td3.textContent = l.items[i].product;
+td2.textContent = l.items[i].quantity;
+td1.textContent = 'del';
+
+trx.appendChild(td1);
+// console.log(td1);
+trx.appendChild(td2);
+trx.appendChild(td3);
+
+
+
   // TODO: Create a TD for the delete link, quantity,  and the item
   let del = document.createElement('td')
   // TODO: Add the TR to the TBODY and each of the TD's to the TR
